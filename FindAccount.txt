@@ -1,0 +1,57 @@
+package week2.day2;
+
+import org.openqa.selenium.By;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class FindAccount {
+	public static void main(String[] args) throws InterruptedException {
+		//To setup driver
+		WebDriverManager.chromedriver().setup();	
+		ChromeDriver driver=new ChromeDriver();
+		//To Load URL
+		driver.get("http://leaftaps.com/opentaps/control/login");
+		//To Maximize the window
+		driver.manage().window().maximize();
+		//To capture user name WebElement Element =
+		driver.findElement(By.id("username")).sendKeys("Demosalesmanager");
+		//To capture password
+		driver.findElement(By.id("password")).sendKeys("crmsfa"); 
+		//To Login
+		driver.findElement(By.className("decorativeSubmit")).click();
+		driver.findElement(By.linkText("CRM/SFA")).click();
+		//To click on accounts tab
+		driver.findElement(By.linkText("Accounts")).click();
+		//To click on Find accounts
+		driver.findElement(By.linkText("Find Accounts")).click();
+		//To enter account name
+		driver.findElement(By.xpath("(//input[@name='accountName'])[2]")).sendKeys("Credit Limited Account");
+		//To Click on find account button
+		driver.findElement(By.xpath("//button[text()='Find Accounts']")).click();
+		Thread.sleep(5000);
+		//driver.findElement(By.xpath("//div[@class='x-grid3-cell-inner x-grid3-col-partyId']/a")).click();
+		driver.findElement(By.xpath("//div[@class='x-grid3-cell-inner x-grid3-col-partyId']/a")).click();
+		//To Click on edit
+		driver.findElement(By.linkText("Edit")).click();
+		//To capture Account name
+		String AccName = driver.findElement(By.id("accountName")).getAttribute("value");
+		//System.out.println(AccName);
+		//To check account name
+		if (AccName.equals("Credit Limited Account"))
+			System.out.println("Account found");
+		else
+			System.out.println("No Match found");
+		//To check Description
+		System.out.println(driver.findElement(By.name("description")).getAttribute("value"));
+		//To get title
+		String Title = driver.getTitle();
+		if (Title.equals("Edit Account | opentaps CRM"))
+			System.out.println("Title matched");
+		else
+			System.out.println("Not matched");
+		//To close browser
+		//driver.close();
+	}
+}

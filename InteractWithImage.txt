@@ -1,0 +1,31 @@
+package week2.day2;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class InteractWithImages {
+	public static void main(String[] args) {
+		WebDriverManager.chromedriver().setup();
+		ChromeDriver driver = new ChromeDriver();
+
+		driver.manage().window().maximize();
+
+		driver.get("http://leafground.com/pages/Image.html");
+
+		driver.findElement(By.xpath("//img[@src='../images/home.png']")).click();
+
+		driver.navigate().back();
+
+		WebElement element = driver.findElement(By.xpath("//label[text()='Am I Broken Image?']/following-sibling::img"));
+		String URL = element.getAttribute("src");
+		driver.get(URL);
+		//System.out.println(driver.getTitle());
+		if(driver.getTitle().equals("404 Not Found"))
+			System.out.println("Image is broken");
+		else
+			System.out.println("Image is not broken");
+	}
+}

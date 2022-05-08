@@ -1,0 +1,47 @@
+package week2.day2;
+
+import org.openqa.selenium.By;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class CreateAccount {
+	public static void main(String[] args) throws InterruptedException {
+		//To Setup driver
+		WebDriverManager.chromedriver().setup();
+		ChromeDriver driver = new ChromeDriver();
+		//to load url
+		driver.get("http://leaftaps.com/opentaps/control/login");
+		//To Maximize the window
+		driver.manage().window().maximize();
+		//To capture user name
+		driver.findElement(By.id("username")).sendKeys("Demosalesmanager");
+		//To capture password
+		driver.findElement(By.name("PASSWORD")).sendKeys("crmsfa");
+		//To Login
+		driver.findElement(By.className("decorativeSubmit")).click();
+		//To click on CRM/SFA Link
+		driver.findElement(By.linkText("CRM/SFA")).click();
+		//To click on Accounts tab
+		driver.findElement(By.linkText("Accounts")).click();
+		//To click on Create Account
+		driver.findElement(By.linkText("Create Account")).click();
+		//To Enter Account name
+		driver.findElement(By.xpath("(//input[@id='accountName'])")).sendKeys("Debit Limited Account");
+		//To Enter Description
+		driver.findElement(By.xpath("(//textarea[@name='description'])")).sendKeys("Selenium Automation Tester");
+		//To Enter Local Name
+		driver.findElement(By.xpath("(//input[@id='groupNameLocal'])")).sendKeys("Savings Account");
+		//To Enter Site Name
+		driver.findElement(By.xpath("(//input[@id='officeSiteName'])")).sendKeys("Chennai");
+		//To Enter Annual Revenue
+		driver.findElement(By.xpath("(//input[@class='inputBox'])[5]")).sendKeys("600000");
+		//To click on create account
+		//driver.findElement(By.className("smallSubmit")).click();
+		driver.findElement(By.xpath("//input[@class='smallSubmit']")).click();
+		Thread.sleep(2000);
+		//To close browser
+		driver.close();
+	}
+}

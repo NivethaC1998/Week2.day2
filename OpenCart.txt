@@ -1,0 +1,30 @@
+package week2.day2;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class OpenCart {
+	public static void main(String[] args) {
+		//To setup driver
+		WebDriverManager.chromedriver().setup();
+		ChromeDriver driver = new ChromeDriver();
+		//To maximize
+		driver.manage().window().maximize();
+		//To load URL
+		driver.get("https://www.opencart.com/index.php?route=account/register");
+		//To enter username
+		driver.findElement(By.id("input-username")).sendKeys("Nivetha C");
+		//To enter firstName
+		driver.findElement(By.id("input-firstname")).sendKeys("Nivetha");
+		//To enter lastName
+		driver.findElement(By.id("input-lastname")).sendKeys("Anand");
+		//To enter email
+		driver.findElement(By.id("input-email")).sendKeys("nivethaece0798@gmail.com");
+		//To enter country
+		driver.findElement(By.id("input-country")).sendKeys("India");
+		//To enter password
+		driver.findElement(By.id("input-password")).sendKeys("ASDF@1234");
+	}
+}
